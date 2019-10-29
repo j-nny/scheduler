@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import "index.scss";
+import Button from "components/Button";
 import DayListItem from "components/DayListItem"
 import DayList from "components/DayList"
 import InterviewerList from "components/InterviewerList"
@@ -19,8 +20,8 @@ import Deleting  from "components/Appointment/Deleting";
 import Saving  from "components/Appointment/Saving";
 import ErrorDeleting from "components/Appointment/ErrorDeleting";
 import ErrorSaving from "components/Appointment/ErrorSaving";
-
-import Button from "components/Button";
+import Edit from "components/Appointment/Form";
+import Create from "components/Appointment/Form";
 
 storiesOf("Button", module)
   .addParameters({
@@ -199,5 +200,21 @@ storiesOf("InterviewerList", module)
     <ErrorSaving
       message="Could not save appointment."
       onClose={action("onClose")}
+    />
+  ))
+  .add("Edit", () => (
+    <Edit
+      name="Lydia Miller-Jones"
+      interviewers={interviewers}
+      interviewer={3}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
+    />
+  ))
+  .add("Create", () => (
+    <Create 
+      interviewers={interviewers}
+      onSave={action("onSave")}
+      onCancel={action("onCancel")}
     />
   ))
