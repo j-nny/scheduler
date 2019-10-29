@@ -8,6 +8,7 @@ import DayListItem from "components/DayListItem"
 import DayList from "components/DayList"
 import InterviewerList from "components/InterviewerList"
 import InterviewerListItem from "components/InterviewerListItem"
+import Appointment from "components/Appointment";
 
 import Button from "components/Button";
 
@@ -104,7 +105,7 @@ storiesOf("InterviewerListItem", module)
       id={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}
-      setInterviewer={action("setInterviewer")}
+      setInterviewer={event => action("onChange")(interviewer.id)}
     />
   ));
 
@@ -131,7 +132,7 @@ storiesOf("InterviewerList", module)
   .add("Preselected", () => (
     <InterviewerList
       interviewers={interviewers}
-      interviewer={3}
-      setInterviewer={action("setInterviewer")}
+      value={3}
+      onChange={action("setInterviewer")}
     />
   ));
