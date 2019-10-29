@@ -8,7 +8,17 @@ import DayListItem from "components/DayListItem"
 import DayList from "components/DayList"
 import InterviewerList from "components/InterviewerList"
 import InterviewerListItem from "components/InterviewerListItem"
-import Appointment from "components/Appointment";
+
+//Appointment
+import Appointment from "components/Appointment/index";
+import Header from "components/Appointment/Header";
+import Empty from "components/Appointment/Empty";
+import Show from "components/Appointment/Show";
+import Confirm from "components/Appointment/Confirm";
+import Deleting  from "components/Appointment/Deleting";
+import Saving  from "components/Appointment/Saving";
+import ErrorDeleting from "components/Appointment/ErrorDeleting";
+import ErrorSaving from "components/Appointment/ErrorSaving";
 
 import Button from "components/Button";
 
@@ -142,6 +152,52 @@ storiesOf("InterviewerList", module)
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
   .add("Appointment", () => <Appointment />)
-  .add("Appointment with Time", () => (
+  .add("Appointment with Time", () =>
     <Appointment time="12pm" />
-  ));
+  )
+  .add("Header", () => (
+    <Header
+      time="12pm"
+  />))
+  .add("Empty", () => (
+    <Empty 
+      onAdd={action("onAdd")}
+    />
+  ))
+  .add("Show", () => (
+    <Show 
+      student="Lydia Miller-Jones"
+      interviewer={interviewer}
+      onEdit={action("onEdit")}
+      onDelete={action("onDelete")}
+    />
+  ))
+  .add("Confirm", () => (
+    <Confirm 
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
+    />
+  ))
+  .add("Deleting", () => (
+    <Deleting
+      message="Deleting"
+    />
+  ))
+  .add("Saving", () => (
+    <Saving
+      message="Saving"
+    />
+  ))
+  .add("ErrorDeleting", () => (
+    <ErrorDeleting 
+      message="Could not delete appointment."
+      onClose={action("onClose")}
+    />
+  ))
+  .add("ErrorSaving", () => (
+    <ErrorSaving
+      message="Could not save appointment."
+      onClose={action("onClose")}
+    />
+  ))
