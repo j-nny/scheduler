@@ -10,6 +10,7 @@ import Show from "components/Appointment/Show";
 import classnames from 'classnames';
 
 export default function Appointment(props) {
+  console.log('hello', props)
   return (
     <article className="appointment">
       <Header time={props.time}/>
