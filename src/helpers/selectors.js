@@ -12,3 +12,17 @@ export function getAppointmentsForDay(state, day) {
   }
   return appts;
 }
+
+export function getInterview(state, interview) {  
+  let interviewDetails = {}
+  for (let i = 0; i < state.days[0].appointments.length; i++) {
+    if (interview !== null) {
+      interviewDetails["student"] = interview.student
+      interviewDetails["interviewer"] = state.interviewers[interview.interviewer]
+    } else {
+      return null
+    }
+  } 
+  
+  return interviewDetails;
+}
