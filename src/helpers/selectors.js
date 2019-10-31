@@ -26,3 +26,18 @@ export function getInterview(state, interview) {
   
   return interviewDetails;
 }
+
+export function getInterviewersForDay(state, day) {
+  const filteredAppointments = state.days.filter(aday => aday.name === day);
+  if (filteredAppointments[0] === undefined) {
+    return [];
+  }
+  let appts = [];
+  let apptId = filteredAppointments[0].interviewers
+  for(let i = 0; i < apptId.length; i++) {
+    if (apptId[i] === state.appointments[apptId[i]].id) {
+      appts.push(state.interviewers[apptId[i]])
+    }
+  }
+  return appts;
+}
