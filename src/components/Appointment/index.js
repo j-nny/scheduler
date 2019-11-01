@@ -34,27 +34,19 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    transition(SAVING)
-    props.bookInterview(props.id, interview).then(
-      () => transition(SHOW)
-    ).catch(() => transition(ERROR_SAVE, true))
+    transition(SAVING, true)
+    props
+    .bookInterview(props.id, interview)
+    .then(() => transition(SHOW))
+    .catch(() => transition(ERROR_SAVE, true))
   };
 
   function remove() {
-    transition(DELETING)
+    transition(DELETING, true)
     props.cancelInterview(props.id).then(
-      () => transition(CONFIRM)
+      () => transition(EMPTY)
     ).catch(() => transition(ERROR_DELETE, true))
   }
-
-
-  // function remove() {
-  //   transition(DELETING, true)
-  //   props
-  //   .cancelInterview(props.id)
-  //   .then(() => transition(EMPTY)
-  //   ).catch((error) => transition(ERROR_DELETE, true))
-  // }
 
   return (
     <article className="appointment">
@@ -67,15 +59,15 @@ export default function Appointment(props) {
             student={props.interview.student}
             interviewer={props.interview.interviewer}
             onEdit={() => transition(EDIT)}
-            onDelete={remove}
+            onDelete={() => transition(CONFIRM)}
           />
         )}
         {mode === EDIT && <Form name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} onSave={save} onCancel={() => back()} />}
         {mode === SAVING && <Saving />}
         {mode === DELETING && <Deleting />}
-        {mode === ERROR_SAVE && <ErrorSaving />}
-        {mode === ERROR_DELETE && <ErrorDeleting />}
-        {mode === CONFIRM && <Confirm onConfirm={() => transition(EMPTY)} />}
+        {mode === ERROR_SAVE && <ErrorSaving onClose={() => back()} />}
+        {mode === ERROR_DELETE && <ErrorDeleting onClose={() => back()} />}
+        {mode === CONFIRM && <Confirm onCancel={() => back()} onConfirm={remove} />}
       </div>
     </article>
   );
