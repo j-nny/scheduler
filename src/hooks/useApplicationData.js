@@ -67,11 +67,13 @@ export default function useApplicationData() {
     })
   }
 
+  // alternative to checkDay: makes api request to obtain the remaining spots, allows two users to be updated at the same time
+  
   // useEffect(() => {
   //   axios.get('/api/days')
   //   .then(res => {
   //     dispatch({
-  //       type: DAYS_REMAINING, value:res.data
+  //       type: SPOTS_REMAINING, value:res.data
   //     })
   //   }).catch((error) => console.log(error))
   // }, [state.appointments])

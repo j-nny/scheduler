@@ -29,6 +29,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  //saves the appointment, shows transition while saving
   function save(name, interviewer, remainingSpots) {
     const interview = {
       student: name,
@@ -41,6 +42,7 @@ export default function Appointment(props) {
     .catch(() => transition(ERROR_SAVE, true))
   };
 
+  //deletes set appointment, shows transition
   function remove() {
     transition(DELETING, true)
     props.cancelInterview(props.id).then(

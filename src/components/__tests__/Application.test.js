@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import { render, cleanup, waitForElement, prettyDOM, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, getByDisplayValue, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, waitForElementToBeRemoved } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -67,11 +67,12 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
+
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
   
     await waitForElement(() => getByText(container, "Archie Cohen"));
   
@@ -84,6 +85,7 @@ describe("Application", () => {
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Linda Miller-Jones" }
     });
+
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
   
     fireEvent.click(getByText(appointment, "Save"));
@@ -102,7 +104,7 @@ describe("Application", () => {
   it("shows the save error when failing to save an appointment", async () => {
     axios.put.mockRejectedValueOnce();
 
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
   
@@ -114,6 +116,7 @@ describe("Application", () => {
     fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
       target: { value: "Lydia Miller-Jones" }
     });
+    
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
   
     fireEvent.click(getByText(appointment, "Save"));

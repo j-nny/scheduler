@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Saving(props) {
+export default function Saving() {
   return (
     <main className="appointment__card appointment__card--status">
   <img

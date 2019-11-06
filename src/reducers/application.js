@@ -1,7 +1,7 @@
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
-const DAYS_REMAINING = "DAYS_REMAINING";
+const SPOTS_REMAINING = "DAYS_REMAINING";
 
 function reducer(state, action) {
 
@@ -13,7 +13,7 @@ function reducer(state, action) {
     case SET_INTERVIEW: {
       return { ...state, appointments:action.appointments, days: action.days }
     }
-    case DAYS_REMAINING: {
+    case SPOTS_REMAINING: {
       return {...state, days:action.value}
     }
     default:
@@ -28,5 +28,5 @@ export {
   SET_DAY,
   SET_APPLICATION_DATA,
   SET_INTERVIEW,
-  DAYS_REMAINING
+  SPOTS_REMAINING
 }

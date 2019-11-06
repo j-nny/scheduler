@@ -16,30 +16,15 @@ export default function Form (props) {
     reset(props.onCancel())
   } 
 
-
-  // const save = () => {
-  //   if (name && interviewer) {
-  //     setError(prev => {
-  //       props.onSave(name, interviewer);
-  //       return false
-  //     })
-  //   }
-  //   else     if (name === "") {
-  //     setError("Student name cannot be blank");
-  //     return;
-  //   }
-  //   if (interviewer === undefined) {
-  //     setError("Select an interviewer")
-  //   }
-  // }
+  //function ensures appointment has name and interviewer selected
 
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");
       return;
-    // } else if (interviewer === null) {
-    //   setError("Select an interviewer")
-    //   return;
+    } else if (interviewer === null) {
+      setError("Select an interviewer")
+      return;
     }
     setError("");
     props.onSave(name, interviewer, props.isCreate);
@@ -49,7 +34,6 @@ export default function Form (props) {
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
-          {/* {error && (<p>Student name cannot be blank</p>)} */}
           <input
             className="appointment__create-input text--semi-bold"
             name="name"
@@ -58,9 +42,6 @@ export default function Form (props) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             data-testid="student-name-input"
-            /*
-              This must be a controlled component
-            */
           />
         </form>
         <section className="appointment__validation">{error}</section>
