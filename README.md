@@ -1,7 +1,7 @@
 # Interview Scheduler
 A single page interview scheduler.
 
-This projects uses React, Axios and uses unit, integration, and end-to-end testing with Jest and Cypress.
+This projects uses React, Axios, builds components using Storybook, and uses unit, integration, and end-to-end testing with Jest and Cypress.
 
 ## Final Product
 Created appointments and appointment in edit mode:
