@@ -6,7 +6,7 @@ export function getAppointmentsForDay(state, day) {
   let appts = [];
   let apptId = filteredAppointments[0].appointments
   for(let i = 0; i < apptId.length; i++) {
-    if (apptId[i] === state.appointments[apptId[i]].id) {
+    if (state.appointments[apptId[i]] && apptId[i] === state.appointments[apptId[i]].id) {
       appts.push(state.appointments[apptId[i]])
     }
   }
